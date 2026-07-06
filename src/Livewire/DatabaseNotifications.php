@@ -37,7 +37,7 @@ class DatabaseNotifications extends BaseDatabaseNotifications
         $this->resetPage(pageName: 'database-notifications-page');
     }
 
-    public function getFilteredNotificationsQuery(): Builder|Relation
+    public function getFilteredNotificationsQuery(): Builder | Relation
     {
         $query = $this->getNotificationsQuery();
 
@@ -48,7 +48,7 @@ class DatabaseNotifications extends BaseDatabaseNotifications
         return $query;
     }
 
-    public function getNotifications(): DatabaseNotificationCollection|Paginator
+    public function getNotifications(): DatabaseNotificationCollection | Paginator
     {
         if (! $this->isPaginated()) {
             /** @phpstan-ignore-next-line */

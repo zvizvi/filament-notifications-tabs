@@ -25,7 +25,7 @@ This package is distributed via GitHub (not Packagist), so add the VCS repositor
 Then require it:
 
 ```bash
-composer require zvizvi/filament-notifications-tabs:^1.0
+composer require zvizvi/filament-notifications-tabs:^0.0.1
 ```
 
 ## Usage
