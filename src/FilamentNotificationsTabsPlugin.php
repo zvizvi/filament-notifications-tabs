@@ -10,6 +10,8 @@ class FilamentNotificationsTabsPlugin implements Plugin
 {
     protected string $defaultTab = 'unread';
 
+    protected bool $confirmDelete = false;
+
     public static function make(): static
     {
         return app(static::class);
@@ -27,6 +29,13 @@ class FilamentNotificationsTabsPlugin implements Plugin
         return $this;
     }
 
+    public function confirmDelete(bool $condition = true): static
+    {
+        $this->confirmDelete = $condition;
+
+        return $this;
+    }
+
     public function register(Panel $panel): void
     {
         $panel->databaseNotificationsLivewireComponent(DatabaseNotifications::class);
@@ -35,5 +44,6 @@ class FilamentNotificationsTabsPlugin implements Plugin
     public function boot(Panel $panel): void
     {
         DatabaseNotifications::defaultTab($this->defaultTab);
+        DatabaseNotifications::confirmDelete($this->confirmDelete);
     }
 }

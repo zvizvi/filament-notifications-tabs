@@ -108,7 +108,7 @@
                             size="sm"
                             :label="__('filament-notifications-tabs::notifications.actions.delete.label')"
                             :tooltip="__('filament-notifications-tabs::notifications.actions.delete.label')"
-                            wire:click="deleteNotification('{{ $notification->getKey() }}')"
+                            wire:click="mountAction('deleteNotification', { id: '{{ $notification->getKey() }}' })"
                         />
 
                         <x-filament::icon-button
@@ -172,6 +172,8 @@
             </x-slot>
         @endif
     </x-filament::modal>
+
+    <x-filament-actions::modals />
 
     <style>
         .fi-no-database .fi-no-notification-close-btn {

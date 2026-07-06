@@ -55,6 +55,15 @@ FilamentNotificationsTabsPlugin::make()
     ->defaultTab('all')
 ```
 
+### Confirm before delete
+
+By default, clicking the delete button removes the notification immediately. To require Filament's native confirmation dialog first:
+
+```php
+FilamentNotificationsTabsPlugin::make()
+    ->confirmDelete()
+```
+
 ## Translations
 
 The package ships with `en` and `he` translations. To customize them:

@@ -4,6 +4,7 @@ namespace Zvizvi\FilamentNotificationsTabs\Livewire;
 
 use Filament\Actions\Action;
 use Filament\Livewire\DatabaseNotifications as BaseDatabaseNotifications;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,11 +16,18 @@ class DatabaseNotifications extends BaseDatabaseNotifications
 {
     public static string $defaultTab = 'unread';
 
+    public static bool $confirmDelete = false;
+
     public string $tab = 'unread';
 
     public static function defaultTab(string $tab): void
     {
         static::$defaultTab = $tab;
+    }
+
+    public static function confirmDelete(bool $condition = true): void
+    {
+        static::$confirmDelete = $condition;
     }
 
     public function mount(): void
@@ -71,6 +79,18 @@ class DatabaseNotifications extends BaseDatabaseNotifications
             ->label(__('filament-notifications::database.modal.actions.mark_all_as_read.label'))
             ->extraAttributes(['tabindex' => '-1'])
             ->action('markAllNotificationsAsRead');
+    }
+
+    public function deleteNotificationAction(): Action
+    {
+        return Action::make('deleteNotification')
+            ->label(__('filament-notifications-tabs::notifications.actions.delete.label'))
+            ->color('danger')
+            ->icon(Heroicon::OutlinedTrash)
+            ->requiresConfirmation(static::$confirmDelete)
+            ->action(function (array $arguments): void {
+                $this->deleteNotification($arguments['id'] ?? '');
+            });
     }
 
     public function deleteNotification(string $id): void
