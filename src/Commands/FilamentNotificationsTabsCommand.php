@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Zvizvi\FilamentNotificationsTabs\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentNotificationsTabsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-notifications-tabs';
 
     public $description = 'My command';
 
