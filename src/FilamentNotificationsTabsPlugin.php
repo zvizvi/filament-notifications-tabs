@@ -4,34 +4,36 @@ namespace Zvizvi\FilamentNotificationsTabs;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Zvizvi\FilamentNotificationsTabs\Livewire\DatabaseNotifications;
 
 class FilamentNotificationsTabsPlugin implements Plugin
 {
-    public function getId(): string
-    {
-        return 'filament-notifications-tabs';
-    }
-
-    public function register(Panel $panel): void
-    {
-        //
-    }
-
-    public function boot(Panel $panel): void
-    {
-        //
-    }
+    protected string $defaultTab = 'unread';
 
     public static function make(): static
     {
         return app(static::class);
     }
 
-    public static function get(): static
+    public function getId(): string
     {
-        /** @var static $plugin */
-        $plugin = filament(app(static::class)->getId());
+        return 'filament-notifications-tabs';
+    }
 
-        return $plugin;
+    public function defaultTab(string $tab): static
+    {
+        $this->defaultTab = $tab;
+
+        return $this;
+    }
+
+    public function register(Panel $panel): void
+    {
+        $panel->databaseNotificationsLivewireComponent(DatabaseNotifications::class);
+    }
+
+    public function boot(Panel $panel): void
+    {
+        DatabaseNotifications::defaultTab($this->defaultTab);
     }
 }

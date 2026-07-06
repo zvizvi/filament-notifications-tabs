@@ -1,86 +1,75 @@
-# This is my package filament-notifications-tabs
+# Filament Notifications Tabs
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/zvizvi/filament-notifications-tabs.svg?style=flat-square)](https://packagist.org/packages/zvizvi/filament-notifications-tabs)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/zvizvi/filament-notifications-tabs/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/zvizvi/filament-notifications-tabs/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/zvizvi/filament-notifications-tabs/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/zvizvi/filament-notifications-tabs/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/zvizvi/filament-notifications-tabs.svg?style=flat-square)](https://packagist.org/packages/zvizvi/filament-notifications-tabs)
+Adds tabs and per-notification actions to the Filament database notifications modal:
 
+- **Unread / All tabs** — filter the notifications list, with an unread-count badge on the Unread tab.
+- **Per-notification actions** — replaces the default X (close) button with a delete (trash) button and a toggle read/unread button.
 
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Compatible with Filament v5 panels.
 
 ## Installation
 
-You can install the package via composer:
+This package is distributed via GitHub (not Packagist), so add the VCS repository to your `composer.json` first:
+
+```json
+{
+    "repositories": {
+        "notifications-tabs": {
+            "type": "vcs",
+            "url": "https://github.com/zvizvi/filament-notifications-tabs.git"
+        }
+    }
+}
+```
+
+Then require it:
 
 ```bash
-composer require zvizvi/filament-notifications-tabs
-```
-
-> [!IMPORTANT]
-> If you have not set up a custom theme and are using Filament Panels follow the instructions in the [Filament Docs](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) first.
-
-After setting up a custom theme add the plugin's views to your theme css file or your app's css file if using the standalone packages.
-
-```css
-@source '../../../../vendor/zvizvi/filament-notifications-tabs/resources/**/*.blade.php';
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-notifications-tabs-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-notifications-tabs-config"
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-notifications-tabs-views"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
+composer require zvizvi/filament-notifications-tabs:^1.0
 ```
 
 ## Usage
 
+Register the plugin in your panel provider. Database notifications must be enabled on the panel:
+
 ```php
-$filamentNotificationsTabs = new Zvizvi\FilamentNotificationsTabs();
-echo $filamentNotificationsTabs->echoPhrase('Hello, Zvizvi!');
+use Zvizvi\FilamentNotificationsTabs\FilamentNotificationsTabsPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        // ...
+        ->databaseNotifications()
+        ->plugins([
+            FilamentNotificationsTabsPlugin::make(),
+        ]);
+}
 ```
 
-## Testing
+### Default tab
+
+The modal opens on the **Unread** tab by default. To open on the **All** tab instead:
+
+```php
+FilamentNotificationsTabsPlugin::make()
+    ->defaultTab('all')
+```
+
+## Translations
+
+The package ships with `en` and `he` translations. To customize them:
 
 ```bash
-composer test
+php artisan vendor:publish --tag=filament-notifications-tabs-translations
 ```
 
-## Changelog
+## Views
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+To customize the modal view:
 
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](.github/SECURITY.md) on how to report security vulnerabilities.
-
-## Credits
-
-- [zvizvi](https://github.com/zvizvi)
-- [All Contributors](../../contributors)
+```bash
+php artisan vendor:publish --tag=filament-notifications-tabs-views
+```
 
 ## License
 

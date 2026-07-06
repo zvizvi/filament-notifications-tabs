@@ -1,6 +1,6 @@
 {
     "name": "zvizvi/filament-notifications-tabs",
-    "description": "This is my package filament-notifications-tabs",
+    "description": "Tabs and per-notification actions (delete, toggle read status) for the Filament database notifications modal.",
     "keywords": [
         "zvizvi",
         "laravel",
@@ -38,8 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Zvizvi\\FilamentNotificationsTabs\\": "src/",
-            "Zvizvi\\FilamentNotificationsTabs\\Database\\Factories\\": "database/factories/"
+            "Zvizvi\\FilamentNotificationsTabs\\": "src/"
         }
     },
     "autoload-dev": {
@@ -57,10 +56,7 @@
         "laravel": {
             "providers": [
                 "Zvizvi\\FilamentNotificationsTabs\\FilamentNotificationsTabsServiceProvider"
-            ],
-            "aliases": {
-                "FilamentNotificationsTabs": "Zvizvi\\FilamentNotificationsTabs\\Facades\\FilamentNotificationsTabs"
-            }
+            ]
         }
     },
     "config": {
