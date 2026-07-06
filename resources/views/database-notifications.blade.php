@@ -8,6 +8,11 @@
     $hasNotifications = $notifications->count();
     $isPaginated = $notifications instanceof \Illuminate\Contracts\Pagination\Paginator && $notifications->hasPages();
     $pollingInterval = $this->getPollingInterval();
+
+    // When delete confirmation is enabled, do NOT teleport the modal to <body>:
+    // the confirmation modal renders in place, so both must share the same stacking
+    // context for it to appear above the slide-over. Otherwise keep the default teleport.
+    $confirmDelete = $this::$confirmDelete;
 @endphp
 
 <div class="fi-no-database">
@@ -22,7 +27,7 @@
         id="database-notifications"
         slide-over
         sticky-header
-        teleport="body"
+        :teleport="$confirmDelete ? null : 'body'"
         width="md"
         class="fi-no-database"
         :attributes="

@@ -28,6 +28,16 @@ Then require it:
 composer require zvizvi/filament-notifications-tabs:^0.0.1
 ```
 
+### Register the styles (Tailwind v4)
+
+The modal view uses Tailwind utility classes, so Tailwind needs to scan this package's Blade files. Add a `@source` directive to your Filament theme CSS (e.g. `resources/css/filament/admin/theme.css`), then rebuild:
+
+```css
+@source '../../../../vendor/zvizvi/filament-notifications-tabs/resources/views/**/*.blade.php';
+```
+
+Adjust the number of `../` to match the location of your theme file relative to `vendor/`.
+
 ## Usage
 
 Register the plugin in your panel provider. Database notifications must be enabled on the panel:
