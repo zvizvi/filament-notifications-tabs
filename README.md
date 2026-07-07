@@ -1,5 +1,8 @@
 # Filament Notifications Tabs
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/zvizvi/filament-notifications-tabs.svg?style=flat-square)](https://packagist.org/packages/zvizvi/relation-manager-repeater)
+[![Total Downloads](https://img.shields.io/packagist/dt/zvizvi/filament-notifications-tabs.svg?style=flat-square)](https://packagist.org/packages/zvizvi/relation-manager-repeater)
+
 Adds tabs and per-notification actions to the Filament database notifications modal:
 
 - **Unread / All tabs** — filter the notifications list, with an unread-count badge on the Unread tab.
@@ -9,23 +12,10 @@ Compatible with Filament v5 panels.
 
 ## Installation
 
-This package is distributed via GitHub (not Packagist), so add the VCS repository to your `composer.json` first:
-
-```json
-{
-    "repositories": {
-        "notifications-tabs": {
-            "type": "vcs",
-            "url": "https://github.com/zvizvi/filament-notifications-tabs.git"
-        }
-    }
-}
-```
-
-Then require it:
+Install the package via Composer:
 
 ```bash
-composer require zvizvi/filament-notifications-tabs:^0.0.1
+composer require zvizvi/filament-notifications-tabs:^0.0.2
 ```
 
 ### Register the styles (Tailwind v4)
