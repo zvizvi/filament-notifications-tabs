@@ -1,3 +1,9 @@
+<a href="https://github.com/zvizvi/filament-notifications-tabs" class="filament-hidden">
+
+![Filament Relation Manager Repeater](https://raw.githubusercontent.com/zvizvi/filament-notifications-tabs/main/.github/banner.png)
+
+</a>
+
 # Filament Notifications Tabs
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/zvizvi/filament-notifications-tabs.svg?style=flat-square)](https://packagist.org/packages/zvizvi/relation-manager-repeater)
